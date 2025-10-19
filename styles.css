@@ -14,9 +14,6 @@
     --color-white: #ffffff;
     --color-overlay: rgba(0, 0, 0, 0.4);
     
-    --font-serif: 'Montserrat', Georgia, serif;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    
     --container-max-width: 1200px;
     --container-padding: 24px;
     --section-padding: 120px;
@@ -72,6 +69,34 @@ body {
     padding-inline: var(--container-padding);
 }
 
+/* Accessibility */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    margin-bottom: 1rem;
+}
+
+.section-header .lead {
+    margin: 0 auto;
+    max-width: 60ch;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Montserrat", serif;
@@ -88,12 +113,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: clamp(2.25rem, 4vw, 4rem);
 }
 
-/* Section titles: refined but not shouty */
-.section-title {
-    font-weight: 500;
-    font-size: clamp(1.5rem, 2.4vw, 2.5rem);
-    margin-bottom: 0.75em;
-}
 
 h2 {
     font-size: clamp(1.5rem, 2.4vw, 2.5rem);
@@ -131,23 +150,7 @@ p {
     background-color: var(--color-primary);
 }
 
-/* Project tiles: caption */
-.project-card .caption {
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 0.9375rem;      /* ~15px */
-    letter-spacing: 0.3px;
-    line-height: 1.4;
-}
 
-/* Block quotes / pull quotes if used */
-.quote {
-    font-family: "Montserrat", serif;
-    font-weight: 400;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    line-height: 1.5;
-    letter-spacing: 0.2px;
-}
 
 /* Responsive ramps for type */
 @media (min-width: 768px) {
@@ -577,98 +580,6 @@ a:hover {
     border: 0;
 }
 
-/* Projects Section */
-.projects {
-    padding: var(--section-padding) 0;
-}
-
-.projects h2 {
-    text-align: center;
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    position: relative;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.project-card:hover {
-    transform: scale(1.02);
-}
-
-.project-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.project-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    color: var(--color-white);
-    padding: 2rem;
-    transform: translateY(100%);
-    transition: var(--transition);
-}
-
-.project-card:hover .project-overlay {
-    transform: translateY(0);
-}
-
-.project-overlay h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--color-white);
-}
-
-.project-overlay p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-}
-
-/* Legacy Section */
-.legacy {
-    padding: var(--section-padding) 0;
-    background-color: var(--color-light-gray);
-}
-
-.legacy-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-    text-align: center;
-}
-
-.legacy-number {
-    font-family: var(--font-serif);
-    font-size: clamp(4rem, 8vw, 8rem);
-    font-weight: 400;
-    color: var(--color-primary);
-    line-height: 1;
-}
-
-.legacy-text h3 {
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-}
-
-.legacy-text p {
-    max-width: 400px;
-}
 
 /* Contact Section */
 .contact {
@@ -988,12 +899,6 @@ a:hover {
         --section-padding: 100px;
     }
     
-    .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-}
-
-@media (max-width: 1024px) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
@@ -1044,16 +949,6 @@ a:hover {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-    }
-    
-    .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-    
-    .legacy-content {
-        flex-direction: column;
-        gap: 2rem;
     }
     
     .contact-content {
@@ -1202,10 +1097,6 @@ a:hover {
     .team-name {
         font-size: 1.25rem;
     }
-    
-    .project-overlay {
-        padding: 1.5rem;
-    }
 }
 
 /* Print Styles */
@@ -1259,8 +1150,7 @@ a:hover {
         --color-border: #000000;
     }
     
-    .service-card,
-    .project-card {
+    .service-card {
         border: 2px solid var(--color-primary);
     }
 }
@@ -1422,13 +1312,6 @@ background: rgba(0, 0, 0, 0.4);
         content: "CONT\A ACTO";
     }
     
-    .with-bg-title[data-bg-title="PROJECTS"]::before {
-        content: "PROJ\AECTS";
-    }
-    
-    .with-bg-title[data-bg-title="LEGACY"]::before {
-        content: "LEG\AACY";
-    }
 }
 
 /* WhatsApp Floating Button */
