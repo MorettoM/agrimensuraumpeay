@@ -1360,3 +1360,120 @@ background: rgba(0, 0, 0, 0.4);
         height: 26px;
     }
 }
+
+/* ===== NATURAL DRONE FLOAT ===== */
+.drone-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999999999999;
+  overflow: hidden;
+}
+
+.drone-element {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  opacity: 0.35;
+  border: none;
+  transform-origin: center;
+  animation: droneWander 60s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  transition: opacity 2s ease;
+}
+
+/* Smooth, random-feeling flight pattern */
+@keyframes droneWander {
+  0% {
+    transform: translate(5vw, 10vh) rotate(3deg);
+  }
+  10% {
+    transform: translate(30vw, 20vh) rotate(-2deg);
+  }
+  25% {
+    transform: translate(70vw, 25vh) rotate(4deg);
+  }
+  40% {
+    transform: translate(60vw, 60vh) rotate(-3deg);
+  }
+  55% {
+    transform: translate(20vw, 70vh) rotate(5deg);
+  }
+  70% {
+    transform: translate(10vw, 40vh) rotate(-1deg);
+  }
+  85% {
+    transform: translate(80vw, 50vh) rotate(2deg);
+  }
+  100% {
+    transform: translate(50vw, 20vh) rotate(0deg);
+  }
+}
+
+/* Smaller, slower, more subtle on mobile */
+@media (max-width: 768px) {
+  .drone-element {
+    width: 80px;
+    height: 80px;
+    opacity: 0.25;
+    animation-duration: 90s;
+  }
+}
+
+@media (max-width: 480px) {
+  .drone-element {
+    width: 65px;
+    height: 65px;
+    opacity: 0.2;
+    animation-duration: 110s;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .drone-element {
+    animation: none;
+    opacity: 0.15;
+  }
+}
+
+
+/* Service Select Highlight Animation */
+.service-highlight {
+    animation: serviceHighlight 1.5s ease-in-out;
+}
+
+@keyframes serviceHighlight {
+    0% { background-color: transparent; }
+    25% { background-color: rgba(26, 26, 26, 0.1); }
+    50% { background-color: rgba(26, 26, 26, 0.15); }
+    75% { background-color: rgba(26, 26, 26, 0.1); }
+    100% { background-color: transparent; }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .drone-element {
+        width: 70px;
+        height: 70px;
+        opacity: 0.25;
+        animation-duration: 35s;
+    }
+}
+
+@media (max-width: 480px) {
+    .drone-element {
+        width: 60px;
+        height: 60px;
+        opacity: 0.2;
+        animation-duration: 40s;
+    }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    .drone-element {
+        animation-duration: 60s;
+        opacity: 0.15;
+    }
+}
