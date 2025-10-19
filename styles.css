@@ -31,6 +31,7 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -41,6 +42,9 @@ body {
     letter-spacing: 0.1px;     /* subtle polish */
     color: #111;               /* near-black on white */
     background-color: var(--color-white);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 /* Skip Link */
@@ -279,6 +283,35 @@ a:hover {
     font-size: clamp(1.125rem, 2.5vw, 1.5rem);
     font-weight: 300;
     color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+}
+
+.hero-cta-btn {
+    display: inline-block;
+    background: #051104a3;
+    color: var(--color-white);
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(19, 64, 16, 0.3);
+    border: 2px solid transparent;
+}
+
+.hero-cta-btn:hover {
+    background: #051104db;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(19, 64, 16, 0.4);
+    color: var(--color-white);
+}
+
+.hero-cta-btn:active {
+    transform: translateY(0);
 }
 
 /* Studio Section */
@@ -466,6 +499,61 @@ a:hover {
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
+}
+
+/* Service Card Overlay & CTA */
+.service-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.service-card:hover .service-card-overlay,
+.service-card:focus .service-card-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.service-cta-pill {
+    background: #263129;
+    color: var(--color-white);
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    user-select: none;
+}
+
+.service-card:hover .service-cta-pill {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(38, 49, 41, 0.4);
+}
+
+/* Focus styles for accessibility */
+.service-card:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+}
+
+.service-card:focus .service-card-overlay {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* Map Section */
@@ -788,6 +876,25 @@ a:hover {
     font-family: 'Inter', sans-serif;
 }
 
+/* Service preselection highlight */
+.service-highlight {
+    border-color: #263129 !important;
+    background: rgba(38, 49, 41, 0.05) !important;
+    box-shadow: 0 0 0 3px rgba(38, 49, 41, 0.1) !important;
+    animation: serviceHighlight 1.5s ease-out;
+}
+
+@keyframes serviceHighlight {
+    0% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 5px rgba(38, 49, 41, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 3px rgba(38, 49, 41, 0.1);
+    }
+}
+
 /* Loading state */
 .submit-btn.loading {
     background: #666;
@@ -899,6 +1006,10 @@ a:hover {
         --container-padding: 20px;
     }
     
+    body {
+        overflow-x: hidden;
+    }
+    
     .nav-container {
         flex-wrap: wrap;
         gap: 1rem;
@@ -911,15 +1022,28 @@ a:hover {
     
     .hero-content {
         padding: 0 20px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+    
+    .hero-cta-btn {
+        font-size: 15px;
+        padding: 14px 28px;
     }
     
     .services-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        width: 100%;
+        max-width: 100%;
     }
     
     .service-card {
         padding: 2rem 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .projects-grid {
@@ -935,6 +1059,8 @@ a:hover {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 3rem;
+        width: 100%;
+        max-width: 100%;
     }
     
     .form-row {
@@ -944,6 +1070,9 @@ a:hover {
     
     .contact-form-container {
         padding: 32px 24px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .form-title {
@@ -1010,6 +1139,33 @@ a:hover {
     
     .service-card-content p {
         font-size: 0.9rem;
+    }
+    
+    /* Disable overlay on touch devices - direct tap navigation */
+    @media (hover: none) and (pointer: coarse) {
+        .service-card-overlay {
+            display: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        .service-card:hover .service-card-overlay,
+        .service-card:focus .service-card-overlay {
+            display: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Ensure cards are still interactive */
+        .service-card {
+            cursor: pointer;
+        }
+        
+        /* Optional: Add subtle touch feedback */
+        .service-card:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
     }
     
     .map-container {
@@ -1081,6 +1237,18 @@ a:hover {
     html {
         scroll-behavior: auto;
     }
+    
+    .service-card-overlay {
+        transition: opacity 0.01ms !important;
+    }
+    
+    .service-cta-pill {
+        transition: transform 0.01ms !important;
+    }
+    
+    .service-highlight {
+        animation: none !important;
+    }
 }
 
 /* High contrast mode */
@@ -1102,6 +1270,9 @@ a:hover {
 .section {
     position: relative;
     padding: clamp(72px, 12vw, 140px) 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 /* Light background sections */
@@ -1178,10 +1349,11 @@ background: rgba(0, 0, 0, 0.4);
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 100%;
+    max-width: 100vw;
 }
 
 .with-bg-title-image::before {
-    color: rgba(255, 255, 255, 0.8);   /* VERY faint; tune between 0.03–0.07 */
+    color: rgb(255 255 255 / 32%);   /* VERY faint; tune between 0.03–0.07 */
 }
 
 
@@ -1232,20 +1404,22 @@ background: rgba(0, 0, 0, 0.4);
     }
     
     .with-bg-title-image::before {
-        color: rgba(255, 255, 255, 0.15);
+        font-size: clamp(40px, 14vw, 180px);
+        margin: 10px 15px;
+        color: rgb(255 255 255 / 32%);   /* VERY faint; tune between 0.03–0.07 */
     }
     
     /* Mobile word breaking for specific sections */
     .with-bg-title[data-bg-title="SERVICIOS"]::before {
-        content: "SERVI\ACIOS";
+        content: "SERVICIOS";
     }
     
     .with-bg-title[data-bg-title="NOSOTROS"]::before {
-        content: "NOSO\ATROS";
+        content: "NOSO\A  TROS";
     }
     
     .with-bg-title[data-bg-title="CONTACTO"]::before {
-        content: "CONTAC\ATO";
+        content: "CONT\A ACTO";
     }
     
     .with-bg-title[data-bg-title="PROJECTS"]::before {
