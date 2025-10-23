@@ -586,7 +586,7 @@
 
                                 <div class="form-group full-width">
                                     <textarea
-                                        id="area"
+                                        id="descripcion"
                                         rows="3"
                                         name="descripcion" 
                                         placeholder="Servicio de Mensuras, 500 m², 1.5 hectáreas, etc."
@@ -721,12 +721,12 @@
         });
         
         function validateForm() {
-            const requiredFields = ['nombre', 'telefono', 'email', 'ciudad', 'tipo-proyecto', 'servicio', 'area'];
+            const requiredFields = ['nombre', 'telefono', 'email', 'ciudad', 'descripcion'];
             let isValid = true;
             
             // Remove existing error messages
             document.querySelectorAll('.field-error').forEach(error => error.remove());
-            
+
             requiredFields.forEach(fieldName => {
                 const field = document.getElementById(fieldName);
                 const value = field.value.trim();
