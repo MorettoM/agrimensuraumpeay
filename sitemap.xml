@@ -1,4 +1,16 @@
-https://agrimensuracalamuchita.com/
-https://agrimensuracalamuchita.com/servicios
-https://agrimensuracalamuchita.com/contacto
-etc.
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://agrimensuracalamuchita.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://agrimensuracalamuchita.com/#nosotros</loc>
+  </url>
+  <url>
+    <loc>https://agrimensuracalamuchita.com/#servicios</loc>
+  </url>
+  <url>
+    <loc>https://agrimensuracalamuchita.com/#contacto</loc>
+  </url>
+</urlset>
